@@ -1,4 +1,4 @@
-// tamanho da MAIOR SUBSEQUENCIA CRESCENTE!
+// tamanho da MAIOR SUBSEQUENCIA CRESCENTE! com o DFS
 // n = 5, arestas = [1,1,3,3] -1 (one based)
 // 2: 5,7 ; 3: 5,7 ; 4: 5,7 ; 5: 5,7,8
 // saida: 2,2,2,3.
@@ -16,7 +16,37 @@ void dfs(
     std::vector<bool>& visitado,
     std::vector<int>& msc // MAIOR SUBSEQUENCIA CRESCENTE!
 ){
-    
+    visitado[no] = true;
+    // aqui eu processo td haver c o no!
+
+    if(valor[no] > msc.back()){ // ultimo elemento = maior elemento!
+        msc.push_back(valor[no]); // baguncando tudo
+        resposta[no - 1] = msc.size(); // nao preciso da resposta do primeiro
+
+        for(int filho : lista_adj[no]){
+            if(!visitado[filho]){
+                dfs(filho,valor,lista_adj,resposta,visitado,msc);
+            }
+        }
+        msc.pop_back(); // desfaço o ultimo passo. limpei a bagunca
+    }
+    else{
+        int idx = std::lower_bound(msc.begin(),msc.end(),valor[no]) - msc.begin();
+        // BUSCA BINARIA (vetor ja ta ordenado)
+        // retorna a posicao onde todos os elementos sao menores ou iguais que o VALOR!
+        // subtraindo msc.begin() pra tirar o iterador -> indice!
+        int aux = msc[idx]; // salvando o elemento, vai q da zebra
+        
+        resposta[no -1] = msc.size();
+        msc[idx] = valor[no];
+        
+        for(int filho : lista_adj[no]){
+            if(!visitado[no]){
+                dfs(filho,valor,lista_adj,resposta,visitado,msc);
+            }
+        }
+        msc[idx] = aux;
+    }
 }
 
 void solution(
@@ -73,6 +103,5 @@ int main()
     }
     std::cout << std::endl;
     
-
     return 0;
 }
