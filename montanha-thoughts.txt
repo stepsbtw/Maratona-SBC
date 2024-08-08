@@ -1,0 +1,4 @@
+programacao dinamica e grafos.
+
+DFS e LIS ( Longest Increasing Subsequence - Maior Subsequencia Crescente )
+nada intuitivo, pelo menos pra sair do O(n^2)
