@@ -1,0 +1,11 @@
+fui incapaz de fazer a questão.
+os exemplos dados pela prova parecem estar errados. ou minha interpretacao, alguma regra um pouco mais flexível do que devia.
+
+ideias: merge sort, quick sort, transformar em min heap, calcular as maiores subsequencias crescentes. nada tem uma resposta exata.
+
+quantidade de embaralhamentos JUSTOS. (mantendo a posicao relativa das cartas)
+
+exemplos que quebram as regras:
+  5 4 2 3 1 -> em 2 embaralhadas.
+  1 6 5 2 10 3 4 8 7 9 -> em 3 embaralhadas.
+  
