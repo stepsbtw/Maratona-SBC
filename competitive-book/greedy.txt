@@ -1,1 +1,18 @@
+Suppose that we are given a set of coin values coins = {c1, c2,..., ck } and a
+target sum of money n, and we are asked to construct the sum n using as few coins as
+possible.
 
+There is a natural greedy algorithm for solving the problem: always select the
+largest possible coin so that the sum of coin values does not exceed the target sum
+
+It turns out that this strategy does not always work. For example, if coins =
+{1, 3, 4} and n = 6, the optimal solution has only two coins (3 + 3 = 6) but the
+greedy strategy produces a solution with three coins (4 + 1 + 1 = 6).
+
+To use dynamic programming, we should formulate the problem recursively so that
+the solution to the problem can be calculated from solutions to smaller subproblems.
+
+MEMOIZATION The key idea in dynamic programming is memoization, which means
+that we store each function value in an array directly after calculating it. Then, when
+the value is needed again, it can be retrieved from the array without recursive calls.
+To do this, we create arrays
