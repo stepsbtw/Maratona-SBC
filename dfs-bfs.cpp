@@ -21,8 +21,8 @@ vector<pair<int,int>> adj
       for (pair<int,int> u : adj[a]) {
          int no2 = u.first, peso = u.second;
          if (dists[no1]+peso < dists[no2]) {
-            dists[no2] = distance[no1]+peso;
-            fila.push({-distance[no2],no2});
+            dists[no2] = dists[no1]+peso;
+            fila.push({-dists[no2],no2});
          }
       }
    }
