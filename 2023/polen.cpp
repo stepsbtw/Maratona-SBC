@@ -14,28 +14,28 @@ int soma_digitos(int x){
     return soma;
 }
 
-int coleta(int k_pos, int n_flores, vector<int>& flores){
-    for(int i = 0; i < k_pos-1; i++){
-        sort(flores.begin(),flores.end(),greater<int>());
-        flores.front() -= soma_digitos(flores.front());
+int coleta(int k_pos, vector<int> flores){
+    for(int i = 0; i < k_pos-1;i++){
+        maior = flores.top();
+        flores.pop()
+        maior -= soma_digitos(maior);
+        flores.push(maior)
     }
-    sort(flores.begin(),flores.end(),greater<int>());
-    return soma_digitos(flores.front());
+    return soma_digitos(flores.top());
 }
 
 int main(){
     int n_flores, k_pos;
     cin >> n_flores >> k_pos; // quero 0 based.
    
-    vector<int> flores_inicial(n_flores);
+    priority_queue<int> flores;
 
     for(int i = 0; i < n_flores; i++){
         int x;
         cin >> x;
-        flores_inicial[i] = x;
+        flores.push(x)
     }
 
-    int resposta = coleta(k_pos,n_flores, flores_inicial);
-    cout << resposta;
+    cout << coleta(k_pos, flores_inicial);
 
 }
