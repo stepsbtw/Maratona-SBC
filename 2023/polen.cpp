@@ -27,7 +27,7 @@ int main(){
     int n_flores, k_pos;
     cin >> n_flores >> k_pos; // quero 0 based.
     k_pos--;
-    vector<int> flores_inicial(n_flores-1);
+    vector<int> flores_inicial(n_flores);
 
     for(int i = 0; i < n_flores; i++){
         int x;
