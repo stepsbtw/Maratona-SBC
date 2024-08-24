@@ -7,7 +7,7 @@ using namespace std;
 
 int soma_digitos(int x){
     int soma = 0;
-    while(x/10){
+    while(x/10 > 0){
         soma += x%10;
         x /= 10;
     }
