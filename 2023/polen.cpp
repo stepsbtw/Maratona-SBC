@@ -1,6 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <priority_queue>
 using namespace std;
 
 // N <= 10^6, K <= 10^9
