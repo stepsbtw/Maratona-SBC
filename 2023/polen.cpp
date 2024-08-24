@@ -19,6 +19,7 @@ int coleta(int k_pos, int n_flores, vector<int>& flores){
         sort(flores.begin(),flores.end(),greater<int>());
         flores.front() -= soma_digitos(flores.front());
     }
+    sort(flores.begin(),flores.end(),greater<int>());
     return soma_digitos(flores.front());
 }
 
