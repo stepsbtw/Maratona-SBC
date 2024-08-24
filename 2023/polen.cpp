@@ -26,7 +26,7 @@ int coleta(int k_pos, int n_flores, vector<int>& flores){
 int main(){
     int n_flores, k_pos;
     cin >> n_flores >> k_pos; // quero 0 based.
-    k_pos--;
+   
     vector<int> flores_inicial(n_flores);
 
     for(int i = 0; i < n_flores; i++){
