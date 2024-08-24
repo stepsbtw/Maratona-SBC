@@ -13,7 +13,7 @@ vector<pair<int,int>> adj
        dists[i] = INF;
    }
    dists[no] = 0;
-   q.push({0,no});
+   fila.push({0,no});
    while (!fila.empty()) {
       int no1 = fila.top().second; fila.pop();
       if (foiProcessado[no1]) continue;
