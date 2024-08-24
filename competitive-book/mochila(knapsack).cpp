@@ -19,19 +19,7 @@ ou possivel(soma,idx) = possivel(soma,idx-1)
 
 */
 
-int main(){
-    int n_pesos = 4;
-    int pesos[] = {1,3,3,5};
-
-    int max_soma = 0;
-    for(int i = 0; i<n_pesos; i++){
-        max_soma += pesos[i];
-    }
-
-    vector<vector<bool>> possiveis_somas(
-        n_pesos,
-        vector<bool>(max_soma+1, false)
-    );
+void solution(vector<vector<bool>>& possiveis_somas, int max_soma, int pesos, int n_pesos){
     possiveis_somas[0][0] = true; // é possivel fazer 0 com 0.
 
     for(int i = 1; i < n_pesos; i++){
@@ -48,5 +36,24 @@ int main(){
             }
         }
     }
+}
 
+int main(){
+    int n_pesos = 4;
+    int pesos[] = {1,3,3,5};
+
+    int max_soma = 0;
+    for(int i = 0; i<n_pesos; i++){
+        max_soma += pesos[i];
+    }
+
+    vector<vector<bool>> possiveis_somas(
+        n_pesos,
+        vector<bool>(max_soma+1, false)
+    );
+
+    solution(possiveis_somas, max_soma, pesos, n_pesos)
+    for(int i = 0; i < max_soma; i++){
+        cout << i << ": " << possiveis_somas[i][n_pesos];
+    }
 }
