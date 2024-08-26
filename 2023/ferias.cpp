@@ -13,7 +13,7 @@ int solution(int disposicao, queue<int> cansativas, queue<int> revigorantes, int
 
     while(!revigorantes.empty())
     {
-        if (disposicao >= cansativas.front())
+        if (!cansativas.empty() && disposicao >= cansativas.front())
         {
             disposicao -= cansativas.front();
             cansativas.pop();
@@ -28,7 +28,7 @@ int solution(int disposicao, queue<int> cansativas, queue<int> revigorantes, int
     }
     
     // quando esvaziar a fila de revigorantes talvez eu seja capaz de fazer ainda.
-    if (disposicao >= cansativas.front())
+    if (!cansativas.empty() && disposicao >= cansativas.front())
     {
             disposicao -= cansativas.front();
             cansativas.pop();
