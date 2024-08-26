@@ -5,6 +5,26 @@ using namespace std;
 
 const int INF = 1e9;
 
+void dfs_sort(int inicial, vector<vector<int>> const& adj, vector<int>& output, vector<bool>& visited) {
+    visited[inicial] = true;
+    for (int no : adj[inicial]) {
+        if (!visited[no]) { dfs(no); }
+    }
+    output.push_back(inicial);
+}
+
+void topological_sort(int n, vector<vector<int>> const& adj, vector<int>& output) {
+    vector<bool> visited(n);
+    // DFS em todos os nós.
+    for (int i = 0; i < n; ++i) {
+        if (!visited[i]) {
+            dfs(i,adj,output,visited);
+        }
+    }
+    reverse(output.begin(), output.end());
+    // vou deixar invertido.
+}
+
 // int vector<int> dijkstra(int no_inicial, int n_nos, vector<vector<pair<int, int>>> adj) {
 vector<int> dijkstra(int no_inicial, int n_nos, vector<vector<pair<int, int>>> adj)
 {
