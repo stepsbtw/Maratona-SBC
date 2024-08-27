@@ -141,7 +141,7 @@ bool ciclico(vector<vector<int>>& adj, int n) {
     return false;
 }
 
-bool ciclico(vector<vector<int>>& adj, int n) {
+bool ciclico_topologico(vector<vector<int>>& adj, int n) {
   
     // grau de cada vertice
     vector<int> grau(n, 0); 
