@@ -136,22 +136,19 @@ bool ciclico(vector<vector<int>>& adj, int n) {
     vector<bool> pilha_rec(n, false);
 
     for (int i = 0; i < V; i++) {
-        if (!visited[i] && dfs_ciclo(adj, i, visited, pilha_rec)) { return true; }
+        if (!visitado[i] && dfs_ciclo(adj, i, visitado, pilha_rec)) { return true; }
     }
     return false;
 }
 
 bool ciclico_topologico(vector<vector<int>>& adj, int n) {
   
-    // grau de cada vertice
+    // grau de cada no
     vector<int> grau(n, 0); 
   
-    // pilha de grau 0
+    // pilha dos nos grau 0
     queue<int> pilha;
-  
-    int visitados = 0; // nos visitados
 
-    // calcula grau de cada vertice
     for (int no = 0; no < n; no++) {
         for (int filho : adj[no]) {
             grau[filho]++;
@@ -164,8 +161,11 @@ bool ciclico_topologico(vector<vector<int>>& adj, int n) {
             pilha.push(no);
         }
     }
+    return bfs_pilha(no,adj,pilha,grau) != n;
+}
 
-    // BFS
+int bfs_pilha(int no, vector<vector<int>>& adj, queue<int>& pilha, vector<int>& grau){
+    int visitados = 0;
     while (!pilha.empty()) {
         int no = q.front(); q.pop();
         visitados++;
@@ -180,8 +180,7 @@ bool ciclico_topologico(vector<vector<int>>& adj, int n) {
             }
         }
     }
-
-    return visitados != n; 
+    return visitados;
 }
 
 // cria o array dfs e ordena (DYNAMIC PROGRAMMING)
@@ -244,13 +243,12 @@ void transpor_grafo(int n, vector<vector<int>> const& adj, vector<vector<int>> c
     }
 }
 
-void bfs(int inicial, vector<vector<int>> const& adj, vector<bool> &visitado)
+void bfs(int inicial, vector<vector<int>> const& adj, vector<bool> &visitado, queue<int>& fila)
 {
-    queue<int> fila;
     // vector<int> distancia;
+    // distancia[inicial] = 0;
 
-    visitado[inicial] = true; // caso comece em outro no, pode alterar.
-    // distancia[inicial] = 0;   // nao precisa comecar pelo zero.
+    visitado[inicial] = true;
     fila.push(inicial);
 
     while (!fila.empty())
@@ -260,7 +258,6 @@ void bfs(int inicial, vector<vector<int>> const& adj, vector<bool> &visitado)
         for (int no : adj[atual])
         {
             if (visitado[no]){ continue; }
-
             visitado[no] = true;
             fila.push(no);
         }
