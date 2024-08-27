@@ -117,6 +117,73 @@ void dfs_transposto(int inicial, vector<vector<int>> const& adj_transposto, vect
     }
 }
 
+bool dfs_ciclo(int no, vector<vector<int>>& adj, vector<bool>& visitado, vector<bool>& pilha_rec) {
+    if (!visitado[no]) {
+        visitado[no] = true;
+        pilha_rec[no] = true;
+
+        for (int filho : adj[no]) {
+            if (!visited[no] && dfs_ciclo(no, adj, visitado, pilha_rec)){ return true; }
+            else if (recStack[x]){ return true; }
+        }
+    }
+    pilha_rec[no] = false;
+    return false;
+}
+
+bool ciclico(vector<vector<int>>& adj, int n) {
+    vector<bool> visitado(n, false);
+    vector<bool> pilha_rec(n, false);
+
+    for (int i = 0; i < V; i++) {
+        if (!visited[i] && dfs_ciclo(adj, i, visited, pilha_rec)) { return true; }
+    }
+    return false;
+}
+
+bool ciclico(vector<vector<int>>& adj, int n) {
+  
+    // grau de cada vertice
+    vector<int> grau(n, 0); 
+  
+    // pilha de grau 0
+    queue<int> pilha;
+  
+    int visitados = 0; // nos visitados
+
+    // calcula grau de cada vertice
+    for (int no = 0; no < n; no++) {
+        for (int filho : adj[no]) {
+            grau[filho]++;
+        }
+    }
+
+    // empilhar graus 0
+    for (int no = 0; no < n; no++) {
+        if (grau[no] == 0) {
+            pilha.push(no);
+        }
+    }
+
+    // BFS
+    while (!pilha.empty()) {
+        int no = q.front(); q.pop();
+        visitados++;
+
+        // reducao de grau
+        for (int filho : adj[no]) {
+            grau[filho]--;
+          
+            // se grau 0, empilha
+            if (grau[filho] == 0) {
+                q.push(filho);
+            }
+        }
+    }
+
+    return visitados != n; 
+}
+
 // cria o array dfs e ordena (DYNAMIC PROGRAMMING)
 vector<int> topological_sort(int n, vector<vector<int>> const& adj)
 {
