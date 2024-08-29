@@ -30,7 +30,7 @@ int coin_change(set<int> nums, int objetivo)
     return qt_nums[objetivo] == INF ? -1 : qt_nums[objetivo]; // se infinito, não é possivel formar a soma.
 }
 
-int maior_subsequencia_crescente(vector<int> nums, int n_nums)
+int maior_subsequencia_crescente(vector<int>& nums, int n_nums)
 {
 
     vector<int> tamanho_sub(n_nums, 1); // (caso base)
@@ -59,7 +59,7 @@ bool mochila(vector<int>& pesos, int max_soma, int n_pesos)
     {
         for (int soma = max_soma; soma >= 0; soma--)
         {
-         if (possivel[soma]) { possivel[soma+pesos[i]] = true; }
+             if (possivel[soma]) { possivel[soma+pesos[i]] = true; }
         }
     }
     return possivel[max_soma];
