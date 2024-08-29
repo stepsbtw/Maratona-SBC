@@ -49,31 +49,18 @@ int maior_subsequencia_crescente(vector<int> nums, int n_nums)
     return *max_element(tamanho_sub.begin(), tamanho_sub.end());
 }
 
-vector<vector<bool>> mochila(vector<int> pesos, int max_soma, int n_pesos)
+bool mochila(vector<int>& pesos, int max_soma, int n_pesos)
 {
 
-    vector<vector<bool>> possiveis_somas(max_soma + 1, vector<bool>(n_pesos + 1, false));
-    possiveis_somas[0][0] = true; // (caso base)
+    vector<bool> possivel(n_pesos + 1, false);
+    possiveis_somas[0] = true; // (caso base)
 
     for (int i = 1; i < n_pesos; i++)
     {
         for (int soma = max_soma; soma >= 0; soma--)
         {
-
-            if (possiveis_somas[soma][i - 1])
-            {
-                possiveis_somas[soma][i] = true; // caso ja funcionava, ainda funciona
-            }
-
-            if (soma - pesos[i - 1] >= 0)
-            {
-                if (possiveis_somas[soma - pesos[i - 1]][i - 1])
-                {
-                    possiveis_somas[soma][i] = true;
-                }
-            }
+         if (possivel[soma]) { possivel[soma+pesos[i]] = true; }
         }
     }
-
-    return possiveis_somas;
+    return possivel[max_soma];
 }
